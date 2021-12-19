@@ -20,7 +20,7 @@ class Generator:
 
     def generate_from_data(self):
         mu = self.mu_min
-        while mu <= self.mu_max:
+        while mu < self.mu_max:
             log = Logistic(mu=mu, x0=self.x0, iter_num=self.iter_num)
             self.mus.append(mu)
             self.xs.append(log.xs[-1])
@@ -56,15 +56,26 @@ class Generator:
                 file.write(str(x) + '\n')
             file.write('####\n')
 
-    def show_mu_x_graph(self):
-        plt.scatter(self.mus, self.xs, s=2)
-        plt.title('insect-population model')
-        plt.xlabel('k')
+    def show_mu_x_graph(self, fig_file=None):
+        plt.scatter(self.mus, self.xs, s=0.5,
+                    label='('+str(self.x0)+','+str(self.iter_num)+')')
+        plt.title('insect-population model mu-x figure')
+        plt.xlabel('mu')
         plt.ylabel('x')
+        plt.legend()
+        if fig_file:
+            plt.savefig('fig/'+fig_file, format='png')
         plt.show()
         plt.clf()
 
-    def show_frequency_distribution_graph(self):
-        plt.hist(self.xs, bins=10)
+    def show_frequency_distribution_graph(self, bins=10, fig_file=None):
+        plt.hist(self.xs, bins=bins,
+                 label='('+str(self.x0)+','+str(self.iter_num)+')')
+        plt.title('insect-population model frequency distribution figure')
+        plt.xlabel('frequency')
+        plt.ylabel('x')
+        plt.legend()
+        if fig_file:
+            plt.savefig('fig/'+fig_file, format='png')
         plt.show()
         plt.clf()

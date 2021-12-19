@@ -15,13 +15,15 @@ class Logistic:
             self.xs.append(x)
 
     def add_to_graph(self, color='b'):
-        plt.scatter(range(self.iter_num + 1), self.xs, color=color,
+        plt.scatter(range(self.iter_num + 1), self.xs, color=color, s=1,
                     label='('+str(self.x0)+','+str(self.mu)+')')
 
-    def show_graph(self):
+    def show_graph(self, fig_file=None):
         plt.title('Logistic Mapping')
         plt.xlabel('iteration')
         plt.ylabel('x')
         plt.legend()
+        if fig_file:
+            plt.savefig('fig/'+fig_file, format='png')
         plt.show()
         plt.clf()
