@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from logistic import Logistic
+from scipy.stats import norm
 
 class Generator:
     def __init__(self, mu_min=3.0, mu_max=4.0, num=10000, x0=0.5, iter_num=500,
@@ -72,6 +73,19 @@ class Generator:
         plt.hist(self.xs, bins=bins,
                  label='('+str(self.x0)+','+str(self.iter_num)+')')
         plt.title('insect-population model frequency distribution figure')
+        plt.xlabel('frequency')
+        plt.ylabel('x')
+        plt.legend()
+        if fig_file:
+            plt.savefig('fig/'+fig_file, format='png')
+        plt.show()
+        plt.clf()
+
+    def show_normal_distribution_graph(self, mu, sigma, bins=10, fig_file=None):
+        n, bins, patches = plt.hist(self.xs, bins=bins, density=1,
+                                    label='('+str(self.x0)+','+str(self.iter_num)+')')
+        plt.plot(bins, norm.pdf(bins, mu, sigma), 'r--')
+        plt.title('insect-population model normal distribution figure')
         plt.xlabel('frequency')
         plt.ylabel('x')
         plt.legend()

@@ -11,13 +11,13 @@ def logistic_figure():
     logistic.show_graph('logistic-full.png')
     logistic = Logistic(mu=3.4, x0=x0)
     logistic.add_to_graph()
-    logistic.show_graph('logistic-3_4-0_33.png')
+    logistic.show_graph('logistic-3_4-0_66.png')
     logistic = Logistic(mu=3.5, x0=x0)
     logistic.add_to_graph()
-    logistic.show_graph('logistic-3_5-0_33.png')
+    logistic.show_graph('logistic-3_5-0_66.png')
     logistic = Logistic(mu=3.8, x0=x0)
     logistic.add_to_graph()
-    logistic.show_graph('logistic-3_8-0_33.png')
+    logistic.show_graph('logistic-3_8-0_66.png')
 
 def insect_population_figure():
     generator = Generator(import_file_name='insect_full')
